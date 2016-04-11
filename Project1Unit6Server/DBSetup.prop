@@ -1,0 +1,39 @@
+createDB = CREATE DATABASE IF NOT EXISTS `auto`;
+
+createAutomobile = CREATE TABLE IF NOT EXISTS `auto`.`automobile` (\
+`auto_id` int(11) NOT NULL AUTO_INCREMENT,\
+`auto_name` varchar(255) NOT NULL,\
+`auto_make` varchar(255) DEFAULT NULL,\
+`auto_model` varchar(255) DEFAULT NULL,\
+`auto_baseprice` float(9,2) DEFAULT '0.00',\
+`created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\
+PRIMARY KEY (`auto_id`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+createOptionSet= CREATE TABLE IF NOT EXISTS `auto`.`optionset` (\
+`optionset_id` int(11) NOT NULL AUTO_INCREMENT,\
+`optionset_name` varchar(255) NOT NULL,\
+`created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\
+PRIMARY KEY (`optionset_id`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+createOptionValue= CREATE TABLE IF NOT EXISTS `auto`.`optionvalue` (\
+`option_id` int(11) NOT NULL AUTO_INCREMENT,\
+`option_name` varchar(255) NOT NULL,\
+`option_price` float(6,2) DEFAULT '0.00',\
+`created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\
+PRIMARY KEY (`option_id`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+createAutoOptions= CREATE TABLE IF NOT EXISTS `auto`.`auto_option` (\
+`auto_id` int(11) NOT NULL,\
+`optionset_id` int(11) NOT NULL,\
+`option_id` int(11) NOT NULL,\
+`created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\
+KEY `auto_id` (`auto_id`),\
+KEY `optionset_id` (`optionset_id`),\
+KEY `option_id` (`option_id`),\
+CONSTRAINT `auto_options_ibfk_1` FOREIGN KEY (`auto_id`) REFERENCES `auto`.`automobile` (`auto_id`),\
+CONSTRAINT `auto_options_ibfk_2` FOREIGN KEY (`optionset_id`) REFERENCES `auto`.`optionset` (`optionset_id`),\
+CONSTRAINT `auto_options_ibfk_3` FOREIGN KEY (`option_id`) REFERENCES `auto`.`optionvalue` (`option_id`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

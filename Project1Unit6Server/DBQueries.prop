@@ -1,0 +1,21 @@
+InsertAutomobile = INSERT INTO auto.automobile (auto_name, auto_make, auto_model, auto_baseprice) VALUES (?,?,?,?);
+AutoRowCheck = SELECT auto_id FROM auto.automobile WHERE auto_name=?;
+OsRowCheck = SELECT optionset_id FROM auto.optionset WHERE optionset_name=?;
+ORowCheck = SELECT option_id FROM auto.optionvalue WHERE option_name=?;
+InsertOptionSet = INSERT INTO auto.optionset (optionset_name) VALUES (?);
+InsertOption = INSERT INTO auto.optionvalue (option_name, option_price) VALUES (?,?);
+FindOption = SELECT Max(option_id) FROM auto.optionvalue WHERE option_name=? AND option_price=?;
+InsertAutoMap = INSERT INTO auto.auto_option (auto_id, optionset_id, option_id) VALUES (?,?,?);
+UpdateAutoName = UPDATE automobile SET auto_name =? WHERE auto_name =?;
+UpdateOSName = UPDATE optionset inner join auto_option on optionset.optionset_id=auto_option.optionset_id SET optionset_name =? WHERE \
+optionset_name =? AND auto_option.auto_id=?;
+UpdateOptionPrice = UPDATE auto.optionvalue SET option_price =? WHERE option_name =? and option_id in (SELECT auto_option.option_id from \
+automobile inner Join auto_option on automobile.auto_id = auto_option.auto_id inner join optionset on \
+auto_option.optionset_id = optionset.optionset_id where auto_option.auto_id=? and optionset.optionset_name=?);
+GetAutoMap = select * from auto_option where auto_id =?;
+DeleteAutoMap = Delete from auto_option where auto_id =?;
+DeleteAuto = Delete from automobile where auto_id =?;
+CheckOSUse = Select auto_option.auto_id from auto_option where optionset_id =? and auto_id <>? group by auto_id;
+DeleteOption = Delete from optionvalue where option_id =?;
+FindOptionSet = select * from optionset where optionset_id =?;
+DeleteOptionSet = Delete from optionset where optionset_id =?;

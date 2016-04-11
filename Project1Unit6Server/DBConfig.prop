@@ -1,0 +1,4 @@
+DBURLSTART = jdbc:mysql://localhost/
+DBURL = jdbc:mysql://localhost/auto
+UID = root
+PWD = keshav

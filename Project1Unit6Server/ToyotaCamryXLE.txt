@@ -1,0 +1,25 @@
+@Camry XLE/20000
+**Make: Toyota
+#Model: Camry
+
+Color:
+Fort Knox Gold Clearcoat Metallic/0
+Liquid Grey Clearcoat Metallic/0
+Infra-Red Clearcoat/100
+
+Transmission:
+Automatic/50
+
+Power Moonroof:
+Not Present/0
+Present/595
+
+Engine:
+V4/0
+V6/2000
+
+Gas:
+Diesel/0
+Petrol/100
+Electric/500
+Hybrid/900
